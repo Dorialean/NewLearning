@@ -27,14 +27,14 @@ namespace NewLearning
             }
             return res;
         }
-        
+
         //Нужно было использовать HashTable , где ключ - цифра, значение - её повторения в массиве
         public int MajorityElement(int[] nums)
         {
             Hashtable map = new Hashtable();
             for (int i = 0; i < nums.Length; i++)
             {
-                if(!map.ContainsKey(nums[i]))map.Add(nums[i], CountNums(nums[i],nums));
+                if (!map.ContainsKey(nums[i])) map.Add(nums[i], CountNums(nums[i], nums));
             }
             int max = 0;
             foreach (var n in map.Values)
@@ -70,10 +70,10 @@ namespace NewLearning
             int[] indexRes = new int[2];
             for (int i = 0; i < nums.Length; i++)
             {
-                for (int j = nums.Length-1; j > 0 ; j--)
+                for (int j = nums.Length - 1; j > 0; j--)
                 {
                     if (i == j) continue;
-                    if (nums[i] + nums[j] == target) 
+                    if (nums[i] + nums[j] == target)
                     {
                         indexRes[0] = i;
                         indexRes[1] = j;
@@ -108,7 +108,7 @@ namespace NewLearning
                 neighbors = _neighbors;
             }
         }
-        
+
         public Node CloneGraph(Node node)
         {
             Queue<Node> q = new Queue<Node>();
@@ -139,6 +139,59 @@ namespace NewLearning
             }
 
             return dict[node];
+        }
+
+        public bool IsPalindrome(int x)
+        {
+            char[] str = x.ToString().ToCharArray();
+            int i = str.Length - 1;
+            foreach (var ch in str)
+            {
+                if (ch != str[i]) return false;
+                i--;
+            }
+            return true;
+        }
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
+        //Перевернуть половину списка, при помощи "быстрого" и "медленного" курсора
+        public bool IsPalindrome(ListNode head)
+        {
+            ListNode fast = head;
+            ListNode slow = head;
+
+            while (fast != null && fast.next != null) 
+            {
+                fast = fast.next.next;//Этот курсор дойдёт до конца, когда
+                slow = slow.next;     //Этот дойдёт до половины
+            }
+
+            ListNode prev = null;
+            while (slow != null) 
+            {
+                ListNode tmp = slow.next;
+                slow.next = prev;
+                prev = slow;
+                slow = tmp;
+            }//Переворот половины списка
+
+            ListNode left = head;
+            ListNode right = prev;
+            while (right != null) 
+            {
+                if(left.val != right.val) return false;
+                left = left.next;
+                right = right.next;
+            }
+            return true;
         }
     }
 }
