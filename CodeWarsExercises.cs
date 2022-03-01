@@ -35,5 +35,9 @@ namespace NewLearning
         {
             return name.StartsWith("R") || name.StartsWith("r") ? name + " plays banjo" : name + " does not play banjo";
         }
+        public string Smash(string[] words)
+        {
+            return words.Aggregate("", (first,next) => first+" "+next).TrimStart();
+        }
     }
 }
