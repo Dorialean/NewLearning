@@ -6,7 +6,7 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(codeWars.Smash(new string[] { "hello", "world", "this", "is", "great" }));
+Console.WriteLine(codeWars.RoundBy05Steps(4.4d));
 
 
 

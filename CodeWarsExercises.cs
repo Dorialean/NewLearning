@@ -39,5 +39,20 @@ namespace NewLearning
         {
             return words.Aggregate("", (first,next) => first+" "+next).TrimStart();
         }
+
+        public int SquareDigits(int n)
+        {
+            string res = "";
+            foreach (char num in n.ToString())
+            {
+                res += ((num-48)*(num-48)).ToString();
+            }
+            return Convert.ToInt32(res);
+        }
+
+        public double RoundBy05Steps(double n) 
+        {
+            return Math.Round(n / 0.5) * 0.5;
+        }
     }
 }
