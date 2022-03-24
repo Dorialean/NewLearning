@@ -6,7 +6,7 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(codeWars.RoundBy05Steps(4.4d));
+Console.WriteLine(leetCode.NumRescueBoats(new int[] {3,2,2,1},3));
 
 
 

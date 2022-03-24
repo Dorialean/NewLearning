@@ -229,6 +229,23 @@ namespace NewLearning
             }
             return max;
         }
+
+        public int NumRescueBoats(int[] people, int limit)
+        {
+            Array.Sort(people);
+            int lightest = 0;
+            int heaviest = people.Length - 1;
+
+            int boats = 0;
+            while (lightest < people.Length - 1 && heaviest >= lightest)
+            {
+                if (people[lightest] + people[heaviest] <= limit)
+                    lightest++;
+                boats++;
+                heaviest--;
+            }
+            return boats;
+        }
     }
 }
 
