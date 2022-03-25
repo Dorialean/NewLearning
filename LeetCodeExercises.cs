@@ -246,6 +246,23 @@ namespace NewLearning
             }
             return boats;
         }
+
+        public int TwoCitySchedCost(int[][] costs)
+        {
+            int a = costs.Length / 2;
+            int b = a;
+            int total = 0;
+
+            foreach (var cost in costs.OrderByDescending(c => Math.Abs(c[0] - c[1])))
+            {
+                if (a == 0) total += cost[1];
+                else if (b == 0) total += cost[0];
+                else if (cost[0] < cost[1]) { total += cost[0]; a--; }
+                else { total += cost[1]; b--; }
+            }
+
+            return total;
+        }
     }
 }
 
