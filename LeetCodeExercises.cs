@@ -168,14 +168,14 @@ namespace NewLearning
             ListNode fast = head;
             ListNode slow = head;
 
-            while (fast != null && fast.next != null) 
+            while (fast != null && fast.next != null)
             {
                 fast = fast.next.next;//Этот курсор дойдёт до конца, когда
                 slow = slow.next;     //Этот дойдёт до половины
             }
 
             ListNode prev = null;
-            while (slow != null) 
+            while (slow != null)
             {
                 ListNode tmp = slow.next;
                 slow.next = prev;
@@ -185,21 +185,21 @@ namespace NewLearning
 
             ListNode left = head;
             ListNode right = prev;
-            while (right != null) 
+            while (right != null)
             {
-                if(left.val != right.val) return false;
+                if (left.val != right.val) return false;
                 left = left.next;
                 right = right.next;
             }
             return true;
         }
 
-        public class TreeNode 
+        public class TreeNode
         {
             public int val;
             public TreeNode left;
             public TreeNode right;
-            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) 
+            public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
             {
                 this.val = val;
                 this.left = left;
@@ -209,15 +209,15 @@ namespace NewLearning
         //BFS , причём левый сын = 2p+1, правый = 2p+2
         public int WidthOfBinaryTree(TreeNode root)
         {
-            Queue<(int, TreeNode)>? queue = new Queue<(int,TreeNode)>();
+            Queue<(int, TreeNode)>? queue = new Queue<(int, TreeNode)>();
             queue.Enqueue((0, root));
             int max = 0;
-            while (queue.Count > 0) 
+            while (queue.Count > 0)
             {
                 int count = queue.Count;
                 (int p, TreeNode n) = queue.Peek();
                 int left = p, right = p;
-                while (count-- > 0) 
+                while (count-- > 0)
                 {
                     (p, n) = queue.Dequeue();
                     if (p < left) left = p;
@@ -262,6 +262,17 @@ namespace NewLearning
             }
 
             return total;
+        }
+
+        public int Search(int[] nums, int target)
+        {
+            if (nums.Contains(target)) return Array.BinarySearch(nums, target);
+            return -1;
+        }
+
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            return null;
         }
     }
 }

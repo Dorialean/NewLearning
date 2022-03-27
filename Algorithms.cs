@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace NewLearning
@@ -125,6 +126,31 @@ namespace NewLearning
             }
             return -1;
         }
-
+        public int[] Merge(int[] numsFirstHalf, int[] numsSecondHalf)
+        {
+            int[] result = new int[numsFirstHalf.Length + numsSecondHalf.Length];
+            int i = 0, j = 0, k = 0 , p = numsFirstHalf.Length, q = numsSecondHalf.Length;
+            while(i < p && j < q)
+            {
+                if (numsFirstHalf[i] <= numsSecondHalf[j]) { result[k] = numsFirstHalf[i]; i++; }
+                else { result[k] = numsSecondHalf[j]; j++; }
+                k++;
+            }
+            if (i == p)
+            {
+                foreach (int num in numsSecondHalf)
+                {
+                    result.Append(num);
+                }
+            }
+            else
+            {
+                foreach (int num in numsFirstHalf)
+                {
+                    result.Append(num);
+                }
+            }
+            return result;
+        }
     }
 }

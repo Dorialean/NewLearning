@@ -6,7 +6,15 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.TwoCitySchedCost(new int[][] { new int[2] { 259, 770 } , new int[2] { 448, 54 }, new int[2] { 926, 667 }, new int[2] { 184, 139 }, new int[2] { 840, 118 }, new int[2] { 577, 469 } }));
+LeetCodeExercises.ListNode l3 = new LeetCodeExercises.ListNode(3);
+LeetCodeExercises.ListNode l2 = new LeetCodeExercises.ListNode(4, l3);
+LeetCodeExercises.ListNode l1 = new LeetCodeExercises.ListNode(2, l2);
+
+LeetCodeExercises.ListNode l6 = new LeetCodeExercises.ListNode(4);
+LeetCodeExercises.ListNode l5 = new LeetCodeExercises.ListNode(6, l6);
+LeetCodeExercises.ListNode l4 = new LeetCodeExercises.ListNode(5, l5);
+
+Console.WriteLine(leetCode.AddTwoNumbers(l1,l4));
 
 
 
