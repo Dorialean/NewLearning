@@ -270,9 +270,15 @@ namespace NewLearning
             return -1;
         }
 
-        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        public int FindDuplicate(int[] nums)
         {
-            return null;
+            HashSet<int> result = new HashSet<int>();
+            foreach (var n in nums)
+            {
+                if (!result.Contains(n)) result.Add(n);
+                else return n;
+            }
+            return -1;
         }
     }
 }
