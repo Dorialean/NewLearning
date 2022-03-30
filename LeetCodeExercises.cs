@@ -280,6 +280,15 @@ namespace NewLearning
             }
             return -1;
         }
+
+        public bool SearchMatrix(int[][] matrix, int target)
+        {
+            foreach (var dim in matrix)
+            {
+                if (dim.Contains(target)) return true;
+            }
+            return false;
+        }
     }
 }
 
