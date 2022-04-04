@@ -294,10 +294,10 @@ namespace NewLearning
         {
             int i = nums.Length - 2;
             while (i >= 0 && nums[i + 1] <= nums[i]) i--;
-            if(i >= 0)
+            if (i >= 0)
             {
                 int j = nums.Length - 1;
-                while(nums[j] <= nums[i]) j--;
+                while (nums[j] <= nums[i]) j--;
                 swap(nums, i, j);
             }
             reverse(nums, i + 1);
@@ -305,11 +305,11 @@ namespace NewLearning
 
         private void reverse(int[] nums, int start)
         {
-            int i = start, j = nums.Length-1;
+            int i = start, j = nums.Length - 1;
             while (i < j)
             {
                 swap(nums, i, j);
-                i++;j--;
+                i++; j--;
             }
         }
 
@@ -318,6 +318,25 @@ namespace NewLearning
             int t = nums[i];
             nums[i] = nums[j];
             nums[j] = t;
+        }
+
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            int carry = 0;
+            ListNode dummy = new();
+            ListNode pre = dummy;
+
+            while (l1 != null || l2 != null || carry == 1)
+            {
+                int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
+                carry = sum < 10 ? 0 : 1;
+                pre.next = new ListNode(sum % 10);
+                pre = pre.next;
+
+                if (l1 != null)l1 = l1.next;
+                if (l2 != null)l2 = l2.next;                
+            }
+            return dummy.next;
         }
     }
 }
