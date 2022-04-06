@@ -356,6 +356,17 @@ namespace NewLearning
 
             return currentMax;
         }
+
+        public double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            int[] allNums = new int[nums1.Length + nums2.Length];
+            nums1.CopyTo(allNums, 0);
+            nums2.CopyTo(allNums, nums1.Length);
+            Array.Sort(allNums);
+            if(allNums.Length % 2 == 0)
+                return Convert.ToDouble(((allNums[allNums.Length / 2 - 1] + allNums[allNums.Length / 2]))) / 2;
+            else return allNums[Convert.ToInt32(Math.Floor(Convert.ToDecimal(allNums.Length / 2)))];
+        }
     }
 }
 
