@@ -367,6 +367,36 @@ namespace NewLearning
                 return Convert.ToDouble(((allNums[allNums.Length / 2 - 1] + allNums[allNums.Length / 2]))) / 2;
             else return allNums[Convert.ToInt32(Math.Floor(Convert.ToDecimal(allNums.Length / 2)))];
         }
+
+        public class KthLargest
+        {            
+            private SortedList<int, int> minHeap;
+            int k;
+            private int size;
+
+            public KthLargest(int k, int[] nums)
+            {
+                this.k = k;
+                minHeap = new SortedList<int, int>();
+                foreach (int n in nums) Add(n);
+            }
+
+            public int Add(int val)
+            {
+                if(minHeap.ContainsKey(val))minHeap[val]++;
+                else minHeap.Add(val,1);
+                size++;
+                if (size > k)
+                {
+                    var minKV = minHeap.Values[0];
+                    if(minKV == 1)minHeap.RemoveAt(0);
+                    else minHeap[minHeap.Keys[0]]--;
+                    size--;
+                }
+                minHeap.First();
+                return minHeap.Keys[0];
+            }
+        }
     }
 }
 
