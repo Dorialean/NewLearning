@@ -6,7 +6,8 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.FindMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3, 4}));
+Console.WriteLine(leetCode.LongestPalindrome("babad"));
+Console.WriteLine(leetCode.LongestPalindrome("cbbd"));
 
 
 
