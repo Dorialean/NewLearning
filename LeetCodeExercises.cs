@@ -461,6 +461,72 @@ namespace NewLearning
 
             return res * sign;
         }
+
+        public string ConvertS(string s, int numRows)
+        {
+            if (numRows == 1) return s;
+
+            string result = "";
+
+            for (int currentLine = 0; currentLine < numRows; currentLine++)
+            {
+                bool isFirstOrLastLine = currentLine == 0 || currentLine == numRows - 1 ? true : false;
+                int index = currentLine;
+
+                while (index < s.Length)
+                {
+                    if (isFirstOrLastLine)
+                    {
+                        result += s[index];
+                        index += 2 * (numRows - 1);
+                    }
+                    else
+                    {
+                        result += s[index];
+                        index += 2 * (numRows - currentLine - 1);
+                        if (index >= s.Length) continue;
+                        result += s[index];
+                        index += 2 * currentLine;
+                    }
+                }
+            }
+            return result;
+        }
+        public int RomanToInt(string s)
+        {
+            int res = GetRomNum(s[s.Length-1]);
+            for (int i = s.Length-1; i >= 1; i--)
+            {
+                if(GetRomNum(s[i-1]) >= GetRomNum(s[i]))
+                    res += GetRomNum(s[i-1]);
+                else
+                    res -= GetRomNum(s[i-1]);
+            }
+            return res;
+        }
+
+        private int GetRomNum(char c)
+        {
+            switch (c)
+            {
+                case 'I':
+                    return 1;
+                case 'V':
+                    return 5;                    
+                case 'X':
+                    return 10;
+                case 'L':
+                    return 50;
+                case 'C':
+                    return 100;
+                case 'D':
+                    return 500;
+                case 'M':
+                    return 1000;
+                default:
+                    return 0;
+            }
+        }
     }
 }
 

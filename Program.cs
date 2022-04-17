@@ -6,8 +6,7 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.MyAtoi("3.14159"));
-
+Console.WriteLine(leetCode.RomanToInt("LVIII"));
 
 
 
