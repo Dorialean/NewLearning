@@ -527,6 +527,13 @@ namespace NewLearning
                     return 0;
             }
         }
+
+        public int Reverse(int x)
+        {
+            string res = x >= 0 ? string.Concat(x.ToString().Reverse().TakeWhile(char.IsNumber)) : "-" + string.Concat(x.ToString().Reverse().TakeWhile(char.IsNumber));
+            try{return Convert.ToInt32(res);}
+            catch (Exception){ return 0; }
+        }
     }
 }
 
