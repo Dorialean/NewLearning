@@ -6,7 +6,7 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.FindMaxConsecutiveOnes(new int[] { 1, 1, 0, 1, 1, 1}));
+leetCode.MaxArea(new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 });
 
 
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NewLearning
@@ -534,6 +535,32 @@ namespace NewLearning
             try{return Convert.ToInt32(res);}
             catch (Exception){ return 0; }
         }
+        public bool IsMatch(string s, string p)
+        {
+            if (p.Length == 0) 
+                return s.Length == 0;
+            bool first_match = (!(s.Length == 0) && (p[0] == s[0] || p[0] == '.'));
+
+            if (p.Length >= 2 && p[1] == '*')
+                return IsMatch(s, p.Substring(2)) || (first_match && IsMatch(s.Substring(1), p));
+            else
+                return first_match && IsMatch(s.Substring(1), p.Substring(1));
+        }
+
+        public int MaxArea(int[] height)
+        {
+            int maxSize = 0, leftPointer = 0, rightPointer = height.Length - 1;
+            while(leftPointer != rightPointer)
+            {
+                maxSize = (rightPointer - leftPointer) * Math.Min(height[leftPointer], height[rightPointer]) > maxSize 
+                    ? (rightPointer - leftPointer) * Math.Min(height[leftPointer], height[rightPointer]) : maxSize;
+                if (height[leftPointer] > height[rightPointer])
+                    rightPointer--;
+                else
+                    leftPointer++;
+            }
+            return maxSize;
+        }        
     }
 }
 
