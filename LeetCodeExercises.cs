@@ -560,7 +560,76 @@ namespace NewLearning
                     leftPointer++;
             }
             return maxSize;
-        }        
+        }
+
+        public string ValidationResult(string s)
+        {
+            string res = String.Empty;
+            int north = s.Count(x => x.Equals('N')),
+                south = s.Count(x => x.Equals('S')),
+                west = s.Count(x => x.Equals('W')),
+                east = s.Count(x => x.Equals('E'));
+            int verticalD = north - south;
+            int horizontalR = west - east;
+            res = CreateNorS(verticalD) + CreateWorE(horizontalR);
+            var something = res.OrderBy(x => x).ToList();
+            return string.Concat(something).Trim();
+        }
+        private string CreateNorS(int x) 
+        {
+            string res = string.Empty;
+            if(x > 0)
+                for (int i = 0; i < x; i++)
+                {
+                    res += 'N';
+                }
+            else
+                for (int i = 0; i < Math.Abs(x); i++)
+                {
+                    res += 'S';
+                }
+            return res;
+        }
+
+        private string CreateWorE(int x) 
+        {
+            string res = string.Empty;
+            if (x > 0)
+                for (int i = 0; i < x; i++)
+                {
+                    res += 'W';
+                }
+            else
+                for (int i = 0; i < Math.Abs(x); i++)
+                {
+                    res += 'E';
+                }
+            return res;
+        }
+
+        private int Candy(int[] ratings)
+        {
+            int[] res = new int[ratings.Length];
+
+            //Each child must have at least one candy
+            Array.Fill(res, 1);
+
+            //Children with a higher rating get more candies than their neighbors.
+            for (int i = 1; i < ratings.Length; i++)
+            {
+                if (ratings[i] > ratings[i - 1])
+                    res[i] = res[i - 1] + 1;
+            }
+
+            for (int i = ratings.Length - 2; i >= 0; i--)
+            {
+                if (ratings[i] > ratings[i + 1])
+                    res[i] = Math.Max(res[i], res[i + 1] + 1);
+            }
+
+            return res.Sum();
+        }
+
     }
 }
 
