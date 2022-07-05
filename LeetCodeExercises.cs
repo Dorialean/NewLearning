@@ -630,6 +630,38 @@ namespace NewLearning
             return res.Sum();
         }
 
+        public int LongestConsecutive(int[] nums)
+        {
+            //Dummy check
+            if (nums.Length <= 0)
+                return 0;
+
+            int longestSeqence = 1;
+            int usedSequence = 1;
+
+            //Getting rid of repeated nums
+            nums = nums.Select(x => x).Distinct().ToArray();
+            Array.Sort(nums);
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (nums[i] == nums[i - 1] + 1)
+                {
+                    usedSequence++;
+                }
+                else
+                {
+                    usedSequence = 1;
+                }
+
+                if (usedSequence > longestSeqence)
+                {
+                    longestSeqence = usedSequence;
+                }
+            }
+            return longestSeqence;
+        }
+
     }
 }
 
