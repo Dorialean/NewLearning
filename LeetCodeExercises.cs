@@ -662,6 +662,39 @@ namespace NewLearning
             return longestSeqence;
         }
 
+        public IList<int> RightSideView(TreeNode root)
+        {
+            if(root == null)
+                return new List<int>();
+
+            List<int> res = new();
+            Queue<TreeNode> q = new();
+            q.Enqueue(root);
+
+            while(q.Count > 0)
+            {
+                int count = q.Count;
+
+                while(count > 0)
+                {
+                    TreeNode cur = q.Dequeue();
+
+                    if (count == 1)
+                        res.Add(cur.val);
+
+                    if(cur.left != null)
+                        q.Enqueue(cur.left);
+
+                    if (cur.right != null)
+                        q.Enqueue(cur.right);
+
+                    count--;
+                }
+            }
+
+            return res;
+        }
+
     }
 }
 
