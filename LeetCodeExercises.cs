@@ -695,6 +695,10 @@ namespace NewLearning
             return res;
         }
 
+        public bool IsAnagram(string s, string t) => string.Concat(s.OrderBy(c => c)) == string.Concat(t.OrderBy(c => c));
+        
+
+
     }
 }
 
