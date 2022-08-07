@@ -734,6 +734,102 @@ namespace NewLearning
             string[] I = new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
             return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
         }
+
+        public string LongestCommonPrefix(string[] strs)
+        {
+            var prefix = string.Empty;
+            var start = string.Empty;
+
+            for (int i = 0; i < strs.Length; i++)
+            {
+                for (int j = 0; j < strs[i].Length; j++)
+                {
+                    start += strs[i][j];
+                    if (strs.All(s => s.StartsWith(start)))
+                    {
+                        prefix = start;
+                    }
+                }
+            }
+            return prefix;
+        }
+
+        public IList<IList<int>> ThreeSum(int[] nums)
+        {
+            var res = new List<IList<int>>();
+            int prevOuter = 0;
+
+            Array.Sort(nums);
+            for (int i = nums.Length - 1; i > 1; i--)
+            {
+                if (i != nums.Length - 1 && nums[i] == prevOuter)
+                {
+                    continue;
+                }
+                int remain = 0 - nums[i];
+                prevOuter = nums[i];
+                int prevInner = 0;
+
+                for (int j = i - 1; j > 0; j--)
+                {
+                    if (j != i - 1 && nums[j] == prevInner)
+                    {
+                        continue;
+                    }
+                    int last = remain - nums[j];
+                    prevInner = nums[j];
+                    int exist = Array.BinarySearch<int>(nums, 0, j, last);
+                    if (exist >= 0)
+                    {
+                        res.Add(new List<int>() { nums[i], nums[j], last });
+                    }
+                }
+            }
+            return res;
+        }
+
+
+        Dictionary<char, char[]> phoneNumberToLetters = new()
+        {
+            { '2', new char[] { 'a', 'b', 'c' } },
+            { '3', new char[] { 'd', 'e', 'f' } },
+            { '4', new char[] { 'g', 'h', 'i' } },
+            { '5', new char[] { 'j', 'k', 'l' } },
+            { '6', new char[] { 'm', 'n', 'o' } },
+            { '7', new char[] { 'p', 'q', 'r', 's' } },
+            { '8', new char[] { 't', 'u', 'v' } },
+            { '9', new char[] { 'w', 'x', 'y', 'z' } },
+        };
+        IList<string> letterCombinations = new List<string>();
+
+
+        public IList<string> LetterCombinations(string digits)
+        {
+            if (digits == string.Empty || digits == null)
+                return new List<string>();
+
+            DFS(digits, 0, new StringBuilder());
+            return letterCombinations;
+        }
+
+        private void DFS(string d, int i, StringBuilder cur)
+        {
+            foreach (var c in phoneNumberToLetters[d[i]])
+            {
+                cur.Append(c);
+
+                if(d.Length - 1 == i)
+                {
+                    letterCombinations.Add(cur.ToString());
+                }
+                else
+                {
+                    DFS(d, i + 1, cur);
+                }
+
+                cur.Remove(cur.Length-1, 1);
+            }
+        }
     }
 }
 
