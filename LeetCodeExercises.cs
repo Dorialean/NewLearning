@@ -830,6 +830,26 @@ namespace NewLearning
                 cur.Remove(cur.Length-1, 1);
             }
         }
+
+        public ListNode RemoveNthFromEnd(ListNode head, int n)
+        {
+            List<ListNode> list = new List<ListNode>();
+
+            var node = head;
+
+            while (node != null)
+            {
+                list.Add(node);
+                node = node.next;
+            }
+
+            if (n == list.Count)
+                return list.Count > 1 ? list[1] : null;
+
+            list[list.Count - 1 - n].next = list[list.Count - n].next;
+
+            return head;
+        }
     }
 }
 
