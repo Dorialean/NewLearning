@@ -850,6 +850,149 @@ namespace NewLearning
 
             return head;
         }
+
+        public bool IsValid(string s)
+        {
+            Stack<char> brackets = new();
+
+            foreach (var bracket in s)
+            {
+                if (bracket == '(')
+                    brackets.Push(')');
+                else if (bracket == '[')
+                    brackets.Push(']');
+                else if (bracket == '{')
+                    brackets.Push('}');
+                else if (brackets.Count == 0 || brackets.Pop() != bracket)
+                    return false;
+            }
+
+            return brackets.Count == 0;
+        }
+
+        //Не корректное, но рабочее решение
+        /*public ListNode MergeTwoLists(ListNode list1, ListNode list2)
+          {
+              ListNode leftCursor = list1;
+              ListNode rightCursor = list2;
+              List<int> result = new();
+
+              if (leftCursor == null && rightCursor == null)
+                  return null;
+              else if (leftCursor == null)
+                  return list2;
+              else if (rightCursor == null)
+                  return list1;
+
+              while (leftCursor != null)
+              {
+                  result.Add(leftCursor.val);
+                  leftCursor = leftCursor.next;
+              }
+
+              while (rightCursor != null)
+              {
+                  result.Add(rightCursor.val);
+                  rightCursor = rightCursor.next;
+              }
+              var resultArray = result.ToArray();
+              Array.Sort(resultArray);
+              ListNode res = new(resultArray[0]);
+              ListNode resHead = res;
+              foreach (var n in resultArray.Skip(1).ToArray())
+              {
+                  res.next = new(n);
+                  res = res.next;
+              }
+
+              return resHead;
+          }
+        */
+
+        //Корректное решение
+        public ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+            if (l1 == null)
+                return l2;
+            else if (l2 == null)
+                return l1;
+
+            ListNode d = new ListNode(),
+                     cur = d;
+
+            while (l1 != null && l2 != null)
+            {
+                if (l1.val < l2.val)
+                {
+                    cur.next = l1;
+                    l1 = l1.next;
+                }
+                else
+                {
+                    cur.next = l2;
+                    l2 = l2.next;
+                }
+
+                cur = cur.next;
+            }
+
+            if (l1 != null)
+                cur.next = l1;
+
+            if (l2 != null)
+                cur.next = l2;
+
+            return d.next;
+        }
+
+        public int RemoveDuplicates(int[] nums)
+        {
+            int placePointer = 0;
+
+            for (int checkPointer = 0; checkPointer < nums.Length; checkPointer++)
+            {
+                nums[placePointer++] = nums[checkPointer];
+                while (checkPointer < nums.Length - 1 && nums[checkPointer] == nums[checkPointer + 1])
+                    checkPointer++;
+            }
+            return placePointer;
+        }
+
+
+        const char leftBracer = '(';
+        const char rightBracer = ')';
+
+        public IList<string> GenerateParenthesis(int n)
+        {
+            IList<string> res = new List<string>();
+            DFS(n, n, new StringBuilder(), res);
+            return res;
+        }
+
+        private void DFS(int openBracers, int closeBracers, StringBuilder sb, IList<string> res)
+        {
+            if(openBracers == 0 && closeBracers == 0)
+            {
+                res.Add(sb.ToString());
+            }
+            else
+            {
+                if(openBracers > 0)
+                {
+                    sb.Append(leftBracer);
+                    DFS(openBracers - 1, closeBracers, sb, res);
+                    sb.Length--;
+                }
+
+                if(closeBracers > openBracers)
+                {
+                    sb.Append(rightBracer);
+                    DFS(openBracers, closeBracers - 1, sb, res);
+                    sb.Length--;
+                }
+            }
+        }
+
     }
 }
 
