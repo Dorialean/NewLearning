@@ -967,31 +967,70 @@ namespace NewLearning
             IList<string> res = new List<string>();
             DFS(n, n, new StringBuilder(), res);
             return res;
+
+            void DFS(int openBracers, int closeBracers, StringBuilder sb, IList<string> res)
+            {
+                if (openBracers == 0 && closeBracers == 0)
+                {
+                    res.Add(sb.ToString());
+                }
+                else
+                {
+                    if (openBracers > 0)
+                    {
+                        sb.Append(leftBracer);
+                        DFS(openBracers - 1, closeBracers, sb, res);
+                        sb.Length--;
+                    }
+
+                    if (closeBracers > openBracers)
+                    {
+                        sb.Append(rightBracer);
+                        DFS(openBracers, closeBracers - 1, sb, res);
+                        sb.Length--;
+                    }
+                }
+            }
         }
 
-        private void DFS(int openBracers, int closeBracers, StringBuilder sb, IList<string> res)
+        public ListNode MergeKLists(ListNode[] lists)
         {
-            if(openBracers == 0 && closeBracers == 0)
-            {
-                res.Add(sb.ToString());
-            }
-            else
-            {
-                if(openBracers > 0)
-                {
-                    sb.Append(leftBracer);
-                    DFS(openBracers - 1, closeBracers, sb, res);
-                    sb.Length--;
-                }
+            if (lists == null || lists.Length == 0 || !IsAnyNodesLeft(lists))
+                return null;
 
-                if(closeBracers > openBracers)
-                {
-                    sb.Append(rightBracer);
-                    DFS(openBracers, closeBracers - 1, sb, res);
-                    sb.Length--;
-                }
+            //For Completing DummyTest if there was an null in start 'lists' array
+            ListNode[] withoutNullLists = lists.Where(x => x != null).Select(x => x).ToArray();
+            ListNode minValCurs = new(withoutNullLists.Select(x => x.val).Min());
+            ListNode res = minValCurs;
+
+
+            while (IsAnyNodesLeft(withoutNullLists))
+            {
+                //picking index of the lowest element
+                int i = Array.IndexOf(withoutNullLists, withoutNullLists.MinBy(lNode => lNode?.val));
+                minValCurs.next = new(TakeOneAndGoNext(ref withoutNullLists[i]));
+                minValCurs = minValCurs.next;
+            }
+
+            return res.next;
+
+            //Taking listnode value and moving this value forward
+            int TakeOneAndGoNext(ref ListNode listNode)
+            {
+                int res = listNode.val;
+                listNode = listNode.next;
+                return res;
+            }
+
+            bool IsAnyNodesLeft(ListNode[] arrayNodes)
+            {
+                if (arrayNodes.All(x => x == null))
+                    return false;
+                return true;
             }
         }
+
+
 
     }
 }
