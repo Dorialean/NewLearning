@@ -1031,7 +1031,59 @@ namespace NewLearning
         }
 
         public int StrStr(string haystack, string needle) => haystack.IndexOf(needle);
-        
+
+        public IList<int> FindSubstring(string s, string[] words)
+        {
+            var permutations = Permutations(words);
+            IList<int> indicies = new List<int>();
+
+            foreach (var p in permutations)
+            {
+                string currStr = string.Join("", p);
+                int index = s.IndexOf(currStr);
+                int i = 0;
+                while (s.Length > 0 && i < s.Length)
+                {
+                    index = s.IndexOf(currStr, i++);
+                    if (index != -1)
+                        indicies.Add(index);
+                }
+                i = 0;
+                
+            }
+
+            return indicies.Distinct().ToList();
+
+            static IEnumerable<T[]> Permutations<T>(T[] values, int fromInd = 0)
+            {
+                if (fromInd + 1 == values.Length)
+                    yield return values;
+                else
+                {
+                    foreach (var v in Permutations(values, fromInd + 1))
+                        yield return v;
+
+                    for (var i = fromInd + 1; i < values.Length; i++)
+                    {
+                        SwapValues(values, fromInd, i);
+                        foreach (var v in Permutations(values, fromInd + 1))
+                            yield return v;
+                        SwapValues(values, fromInd, i);
+                    }
+                }
+            }
+
+            static void SwapValues<T>(T[] values, int pos1, int pos2)
+            {
+                if (pos1 != pos2)
+                {
+                    T tmp = values[pos1];
+                    values[pos1] = values[pos2];
+                    values[pos2] = tmp;
+                }
+            }
+        }
+
 
 
 

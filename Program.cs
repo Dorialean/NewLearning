@@ -21,6 +21,16 @@ CodeWarsExercises codeWars = new CodeWarsExercises();
 //LeetCodeExercises.ListNode list7 = new(2, list8);
 
 
+foreach (var index in leetCode.FindSubstring("wordgoodgoodgoodbestword", new string[] { "word","good","best","good" }))
+{
+    Console.WriteLine(index);
+}
+foreach (var index in leetCode.FindSubstring("foobarfoobar", new string[] { "foo", "bar" }))
+{
+    Console.WriteLine(index);
+}
+
+
 
 
 
