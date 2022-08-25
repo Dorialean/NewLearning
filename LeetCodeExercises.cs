@@ -1084,6 +1084,16 @@ namespace NewLearning
             }
         }
 
+        public bool CanConstruct(string ransomNote, string magazine)
+        {
+            foreach (char ch in ransomNote)
+            {
+                if (!magazine.Contains(ch) || magazine.Count(c => c == ch) < ransomNote.Count(c => c == ch))
+                    return false;
+            }
+            return true;
+        }
+
 
 
 
