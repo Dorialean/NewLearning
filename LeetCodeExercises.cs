@@ -1094,6 +1094,32 @@ namespace NewLearning
             return true;
         }
 
+        public int SearchRotated(int[] nums, int target) => Array.IndexOf(nums, target);
+
+        public ListNode SwapPairs(ListNode head)
+        {
+            if (head == null) 
+                return null;
+            if (head.next == null) 
+                return head;
+
+            ListNode res = head;
+            ListNode curr = head;
+            ListNode next = head.next;
+
+            while (curr != null && next != null)
+            {
+                int tmp = curr.val;
+                curr.val = next.val;
+                next.val = tmp;
+                curr = next.next;
+                next = curr?.next;
+            }
+
+            return res;
+        }
+
+
 
 
 
