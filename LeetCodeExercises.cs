@@ -1119,6 +1119,8 @@ namespace NewLearning
             return res;
         }
 
+        public int[] SearchRange(int[] nums, int target) => new int[] { Array.IndexOf(nums, target), Array.LastIndexOf(nums, target)};
+
 
 
 
