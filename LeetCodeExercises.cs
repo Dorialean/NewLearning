@@ -1142,27 +1142,15 @@ namespace NewLearning
 
         public bool CanJump(int[] nums)
         {
-            int i = 0;
-            int jumpingHeight = nums[i];
-            while (i < nums.Length - 1)
+            int goal = nums.Length - 1;
+            for (int i = nums.Length - 1; i >= 0; i--)
             {
-                for (int j = 0; j < jumpingHeight; j++)
+                if (i + nums[i] >= goal)
                 {
-                    if (i + j == nums.Length - 1)
-                        return true;
+                    goal = i;
                 }
-
-                int maxHeight = -1;
-                for (int j = 1; j < jumpingHeight; j++)
-                {
-                    if (nums[j] > maxHeight)
-                        maxHeight = nums[j];
-                }
-
-                i += maxHeight;
-                jumpingHeight = maxHeight;
             }
-            return i < nums.Length;
+            return goal == 0;
         }
     }
 }
