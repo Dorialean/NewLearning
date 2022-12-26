@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Reflection.Metadata;
+using System.Text;
 
 Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
@@ -20,16 +23,4 @@ CodeWarsExercises codeWars = new CodeWarsExercises();
 //LeetCodeExercises.ListNode list8 = new(7);
 //LeetCodeExercises.ListNode list7 = new(2, list8);
 
-
-Console.WriteLine(leetCode.SearchInsert(nums:new int[] { 1, 3, 5, 6 },2));
-Console.WriteLine(leetCode.SearchInsert(nums: new int[] { 1, 3, 5, 6 }, 4));
-
-
-
-
-
-
-
-
-
-
+Console.WriteLine(Environment.OSVersion);

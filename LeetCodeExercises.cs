@@ -1125,10 +1125,10 @@ namespace NewLearning
         {
             int left = 0;
             int right = nums.Length - 1;
-            int mid = nums.Length;
+
             while (left <= right)
             {
-                mid = (left + right) / 2;
+                int mid = (left + right) / 2;
                 if (nums[mid] == target)
                     return mid;
                 else if (nums[mid] > target)
@@ -1136,16 +1136,34 @@ namespace NewLearning
                 else
                     left = mid + 1;
             }
-            if (mid >= left)
-                return mid;
-            else
-                return ++mid;
+
+            return left;
         }
 
+        public bool CanJump(int[] nums)
+        {
+            int i = 0;
+            int jumpingHeight = nums[i];
+            while (i < nums.Length - 1)
+            {
+                for (int j = 0; j < jumpingHeight; j++)
+                {
+                    if (i + j == nums.Length - 1)
+                        return true;
+                }
 
+                int maxHeight = -1;
+                for (int j = 1; j < jumpingHeight; j++)
+                {
+                    if (nums[j] > maxHeight)
+                        maxHeight = nums[j];
+                }
 
-
-
+                i += maxHeight;
+                jumpingHeight = maxHeight;
+            }
+            return i < nums.Length;
+        }
     }
 }
 
