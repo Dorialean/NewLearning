@@ -10,20 +10,6 @@ namespace NewLearning
     {
         Random rnd = new Random();
         Stopwatch stpWatch = new Stopwatch();
-        int[] a;
-        public int[] CreateArray(int amountOfelements)
-        {
-            a = new int[amountOfelements];
-            for (int i = 0; i < amountOfelements; i++)
-            {
-                a[i] = rnd.Next(10000);
-            }
-            return a;
-        }
-        public void PrintArray()
-        {
-            foreach (int elem in a) Console.WriteLine(elem);
-        }
         public void SelectionSort(int[] a)
         {
             stpWatch.Reset();
