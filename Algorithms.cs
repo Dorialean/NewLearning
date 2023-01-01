@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace NewLearning
@@ -10,6 +11,7 @@ namespace NewLearning
     {
         Random rnd = new Random();
         Stopwatch stpWatch = new Stopwatch();
+
         public void SelectionSort(int[] a)
         {
             stpWatch.Reset();
@@ -32,6 +34,7 @@ namespace NewLearning
             stpWatch.Stop();
             Console.WriteLine("Selection Sort:" + stpWatch.Elapsed.ToString());
         }
+
         public void BubbleSort(int[] a)
         {
             stpWatch.Reset();
@@ -53,6 +56,7 @@ namespace NewLearning
             Console.WriteLine("Bubble Sort:" + stpWatch.Elapsed.ToString());
 
         }
+
         public void EasyChooseSort(int[] a)
         {
             stpWatch.Reset();
@@ -80,6 +84,7 @@ namespace NewLearning
             stpWatch.Stop();
             Console.WriteLine("Usual Choose Sort:" + stpWatch.Elapsed.ToString());
         }
+
         public void EasyInputsSort(int[] a)
         {
             stpWatch.Reset();
@@ -98,6 +103,7 @@ namespace NewLearning
             stpWatch.Stop();
             Console.WriteLine("Easy Input Sort:" + stpWatch.Elapsed.ToString());
         }
+
         public int BruteForceStringMatch(string text, string template) 
         {
             char[] textChars = text.ToCharArray();
@@ -112,6 +118,7 @@ namespace NewLearning
             }
             return -1;
         }
+
         public int[] Merge(int[] numsFirstHalf, int[] numsSecondHalf)
         {
             int[] result = new int[numsFirstHalf.Length + numsSecondHalf.Length];
@@ -153,5 +160,24 @@ namespace NewLearning
                 res -= res / n;
             return res;
         }
+
+        public int BinaryPowerRecursive(int num, int power)
+        {
+            if (power == 0)
+            {
+                return 1;
+            }
+
+            if (power % 2 == 1)
+            {
+                return BinaryPowerRecursive(num, power - 1) * num;
+            }
+            else
+            {
+                int b = BinaryPowerRecursive(num, power / 2);
+                return b * b;
+            }
+        }
+
     }
 }
