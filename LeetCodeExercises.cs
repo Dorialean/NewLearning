@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -1151,6 +1153,62 @@ namespace NewLearning
                 }
             }
             return goal == 0;
+        }
+
+        public bool IsValidSudoku(char[][] board)
+        {
+            
+            for (int i = 0; i < board.Length; i++)
+            {
+                if (!IsValidSudokuLine(board[i]))
+                {
+                    return false;
+                }
+                char[] sudokuColumn = new char[board.Length];
+                for (int j = 0; j < board.Length; j++)
+                {
+                    sudokuColumn[j] = board[j][i];
+                }
+                if (!IsValidSudokuLine(sudokuColumn))
+                {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < board.Length; i += 3)
+            {
+                for (int j = 0; j < board.Length; j += 3)
+                {
+                    List<char> sudokuChunk = new();
+                    for (int k = 0; k < 3; k++)
+                    {
+                        sudokuChunk.AddRange(board[i + k][j..(j + 3)]);
+                    }
+                    if (!IsValidSudokuLine(sudokuChunk.ToArray()))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+
+            static bool IsValidSudokuLine(char[] line)
+            {
+                const char EMPTY_CELL_CONTAINER = '.';
+
+                if (line.All(c => c.Equals(EMPTY_CELL_CONTAINER)))
+                {
+                    return true;
+                }
+
+                var lineWithoutEmptyCells = line.Select(c => c).Where(c => !c.Equals(EMPTY_CELL_CONTAINER)).ToArray();
+                if (lineWithoutEmptyCells.Length != lineWithoutEmptyCells.ToHashSet().Count)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

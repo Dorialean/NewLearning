@@ -10,17 +10,12 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-//LeetCodeExercises.ListNode list3 = new(6);
-//LeetCodeExercises.ListNode list2 = new(2,list3);
-//LeetCodeExercises.ListNode list1 = new(1,list2);
-
-
-//LeetCodeExercises.ListNode list6 = new(5);
-//LeetCodeExercises.ListNode list5 = new(3, list6);
-//LeetCodeExercises.ListNode list4 = new(1, list5);
-
-
-//LeetCodeExercises.ListNode list8 = new(7);
-//LeetCodeExercises.ListNode list7 = new(2, list8);
-
-Console.WriteLine(Environment.OSVersion);
+Console.WriteLine(leetCode.IsValidSudoku(new char[][] {new char[] {'5', '3', '.', '.', '7', '.', '.', '.', '.' },
+ new char[] {'6', '.', '.', '1', '9', '5', '.', '.', '.' },
+    new char[] {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+    new char[] {'.', '.', '.', '.', '6', '.', '.', '.', '3'},
+    new char[] {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+    new char[] {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+    new char[] {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+    new char[] {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+    new char[] {'.', '.', '.', '.', '8', '.', '.', '7', '9'}}));
