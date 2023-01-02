@@ -178,6 +178,5 @@ namespace NewLearning
                 return b * b;
             }
         }
-
     }
 }

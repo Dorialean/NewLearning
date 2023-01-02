@@ -1210,6 +1210,37 @@ namespace NewLearning
                 return true;
             }
         }
+
+        public int FirstMissingPositive(int[] nums)
+        {
+            Array.Sort(nums);
+            int minVal = nums.Where(x => x >= 0).Min();
+            int minValIndex = 0;
+            bool isDoneQueue = true;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == minVal)
+                {
+                    minValIndex = i;
+                    break;
+                }
+            }
+            while (isDoneQueue)
+            {
+                if (minValIndex + 1 == nums.Length)
+                {
+                    break;
+                }
+                if (nums[minValIndex + 1] == minVal + 1)
+                {
+                    minValIndex++;
+                    minVal++;
+                }
+                else
+                    isDoneQueue = false;
+            }
+            return minVal + 1;
+        }
     }
 }
 

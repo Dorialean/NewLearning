@@ -10,4 +10,5 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(algorithms.BinaryPowerRecursive(13,5));
+Console.WriteLine(leetCode.FirstMissingPositive(new int[] {3,4,-1,1}));
+//Console.WriteLine(leetCode.FirstMissingPositive(new int[] { 1,2,0 }));
