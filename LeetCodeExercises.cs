@@ -1241,6 +1241,32 @@ namespace NewLearning
             }
             return minVal + 1;
         }
+
+        public int MaxIceCream(int[] costs, int coins)
+        {
+            if (costs.All(iceCreamCost => iceCreamCost > coins))
+                return 0;
+
+            int iceCreamsAmount = 0;
+            int maxCost = costs.Max() + 1;
+            while (coins > 0)
+            {
+                int minCost = costs.Min();
+                if (minCost == maxCost)
+                    break;
+                int indexOfMin = Array.IndexOf<int>(costs, minCost);
+                coins -= minCost;
+                if (coins < 0)
+                    break;
+
+                costs[indexOfMin] = maxCost;
+                iceCreamsAmount++;
+
+                if (!costs.Any(c => c != maxCost))
+                    break;
+            }
+            return iceCreamsAmount;
+        }
     }
 }
 

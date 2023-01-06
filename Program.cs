@@ -10,5 +10,4 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.FirstMissingPositive(new int[] {3,4,-1,1}));
-//Console.WriteLine(leetCode.FirstMissingPositive(new int[] { 1,2,0 }));
+Console.WriteLine(leetCode.MaxIceCream(new int[] { 1, 6, 3, 1, 2, 5 }, 20));
