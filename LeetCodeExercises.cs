@@ -1244,28 +1244,41 @@ namespace NewLearning
 
         public int MaxIceCream(int[] costs, int coins)
         {
-            if (costs.All(iceCreamCost => iceCreamCost > coins))
-                return 0;
-
             int iceCreamsAmount = 0;
-            int maxCost = costs.Max() + 1;
-            while (coins > 0)
+            Array.Sort(costs);
+            for (int i = 0; i < costs.Length; i++)
             {
-                int minCost = costs.Min();
-                if (minCost == maxCost)
+                if (costs[i] > coins)
                     break;
-                int indexOfMin = Array.IndexOf<int>(costs, minCost);
-                coins -= minCost;
-                if (coins < 0)
-                    break;
-
-                costs[indexOfMin] = maxCost;
+                coins -= costs[i];
                 iceCreamsAmount++;
-
-                if (!costs.Any(c => c != maxCost))
-                    break;
             }
             return iceCreamsAmount;
+        }
+
+        public int SubarraysDivByK(int[] nums, int k)
+        {
+            var prefixDict = new Dictionary<int, int>() { { 0 , 1 } };
+            int divisibleArraysCount = 0;
+            int sum = 0;
+            foreach(int n in nums)
+            {
+                sum += n;
+                int prefix = sum % k;
+
+                if (prefix < 0)
+                    prefix += k;
+
+                if (prefixDict.ContainsKey(prefix))
+                {
+                    divisibleArraysCount += prefixDict[prefix];
+                    prefixDict[prefix]++;
+                }
+                else
+                    prefixDict[prefix] = 1;
+            }
+
+            return divisibleArraysCount;
         }
     }
 }
