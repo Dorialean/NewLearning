@@ -1283,17 +1283,20 @@ namespace NewLearning
         
         public int FindJudge(int n, int[][] trust)
         {
-            var peopleToJudgePotential = new Dictionary<int, int>();
-            foreach (var believers in trust)
+            int[] degree = new int[n + 1];
+            foreach (var t in trust)
             {
-                int believer = believers[0];
-                int believed = believers[1];
-                if (peopleToJudgePotential.ContainsKey(believed))
-                {
-                    
-                }
+                degree[t[1]]++;
+                degree[t[0]]--;
             }
-            return 0;
+
+            for (int i = 1; i <= n; i++)
+            {
+                if (degree[i] == n - 1)
+                    return i;
+            }
+
+            return -1;
         }
     }
 }
