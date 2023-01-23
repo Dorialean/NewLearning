@@ -1280,6 +1280,21 @@ namespace NewLearning
 
             return divisibleArraysCount;
         }
+        
+        public int FindJudge(int n, int[][] trust)
+        {
+            var peopleToJudgePotential = new Dictionary<int, int>();
+            foreach (var believers in trust)
+            {
+                int believer = believers[0];
+                int believed = believers[1];
+                if (peopleToJudgePotential.ContainsKey(believed))
+                {
+                    
+                }
+            }
+            return 0;
+        }
     }
 }
 
