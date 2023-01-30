@@ -10,4 +10,4 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.SubarraysDivByK(new int[] { 4, 5, 0, -2, -3, 1 }, 5));
+Console.WriteLine(leetCode.TribonacciRecursive(25));

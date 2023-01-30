@@ -616,7 +616,7 @@ namespace NewLearning
             //Each child must have at least one candy
             Array.Fill(res, 1);
 
-            //Children with a higher rating get more candies than their neighbors.
+            //Children with trib higher rating get more candies than their neighbors.
             for (int i = 1; i < ratings.Length; i++)
             {
                 if (ratings[i] > ratings[i - 1])
@@ -1297,6 +1297,31 @@ namespace NewLearning
             }
 
             return -1;
+        }
+
+        public int TribonacciRecursive(int n)
+        {
+            if (n == 0)
+                return 0;
+            if (n < 3)
+                return 1;
+            return TribonacciRecursive(n - 2) + TribonacciRecursive(n - 1) + n;
+        }
+
+        public int Tribonacci(int n)
+        {
+            if (n == 0) 
+                return 0;
+            else if (n < 3 ) 
+                return 1;
+
+            int[] trib = new int[n + 1];
+            trib[0] = 0;trib[1] = 1; trib[2] = 1;
+            
+            for (var i = 3; i < n + 1; i++)
+                trib[i] = trib[i - 3] + trib[i - 2] + trib[i - 1];
+
+            return trib[n];
         }
     }
 }
