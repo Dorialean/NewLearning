@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1322,6 +1323,39 @@ namespace NewLearning
                 trib[i] = trib[i - 3] + trib[i - 2] + trib[i - 1];
 
             return trib[n];
+        }
+
+        public int BestTeamScore(int[] scores, int[] ages)
+        {
+            int n = scores.Length, maxScore = 0;
+            const int SCORES_POS = 0, AGES_POS = 1;
+            int[][] challangersInfo = new int[n][];
+            int[] pretendedMaximumScores = new int[n];
+
+            for (int i = 0; i < n; i++)
+                challangersInfo[i] = new int[2] { scores[i], ages[i] };
+
+            Array.Sort<int[]>(challangersInfo, Comparer<int[]>
+                .Create((x, y) => x[AGES_POS] - y[AGES_POS] == 0 
+                    ? x[SCORES_POS] - y[SCORES_POS] 
+                    : x[AGES_POS] - y[AGES_POS]));
+
+            for (int i = 0; i < n; i++)
+            {
+                pretendedMaximumScores[i] = challangersInfo[i][SCORES_POS];
+
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (challangersInfo[i][SCORES_POS] >= challangersInfo[j][SCORES_POS])
+                    {
+                        pretendedMaximumScores[i] = Math.Max(pretendedMaximumScores[i], pretendedMaximumScores[j] + challangersInfo[i][SCORES_POS]);
+                    }
+                }
+
+                maxScore = Math.Max(maxScore, pretendedMaximumScores[i]);
+            }
+
+            return maxScore;
         }
     }
 }
