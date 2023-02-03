@@ -10,4 +10,9 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.BestTeamScore(scores:new int[]{ 4, 5, 6, 5 }, ages:new int[] { 2, 1, 2, 1 }));
+foreach (var item in leetCode.PlusOne(new int[] { 9, 9 }))
+{
+    Console.WriteLine(item);
+}
+
+

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -1356,6 +1357,67 @@ namespace NewLearning
             }
 
             return maxScore;
+        }
+
+        public string Multiply(string num1, string num2)
+        {
+            int n1 = num1.Length;
+            int n2 = num2.Length;
+            int[] products = new int[n1 + n2];
+
+            for (int i = n1 - 1; i >= 0; i--)
+            {
+                for (int j = n2 - 1; j >= 0; j--)
+                {
+                    int p1 = i + j;
+                    int p2 = p1 + 1;
+                    int sum = (num1[i] - '0') * (num2[j] - '0') + products[p2]; //работующая халтура
+
+                    products[p1] += sum / 10;
+                    products[p2] = sum % 10;
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (int num in products)
+            {
+                if (!(sb.Length == 0 && num == 0))
+                {
+                    sb.Append(num);
+                }
+            }
+
+            return sb.Length == 0 ? "0" : sb.ToString();
+        }
+
+        public int[] PlusOne(int[] digits)
+        {
+            digits[digits.Length - 1]++;
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+                if (digits[i] == 10)
+                {
+                    digits[i] = 0;
+                    if (i - 1 >= 0)
+                    {
+                        digits[i - 1]++;
+                    }
+                    else
+                    {
+                        int[] res = new int[digits.Length + 1];
+                        res[0] = 1;
+                        int j = 1;
+                        foreach (var digit in digits)
+                        {
+                            res[j++] = digit;
+                        }
+                        return res;
+                    }
+                    
+                }
+                
+            }
+            return digits;
         }
     }
 }
