@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -1418,6 +1420,14 @@ namespace NewLearning
                 
             }
             return digits;
+        }
+
+        public double MyPow(double x, int n) => Math.Pow(x, n);
+
+        public int MonkeyMove(int n)
+        {
+            const int MOD = 1_000_000_007;
+            return ((int)BigInteger.ModPow(2, n, MOD) - 2 + MOD) % MOD;
         }
     }
 }

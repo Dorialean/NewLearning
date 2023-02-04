@@ -10,9 +10,6 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-foreach (var item in leetCode.PlusOne(new int[] { 9, 9 }))
-{
-    Console.WriteLine(item);
-}
+Console.WriteLine(leetCode.MonkeyMove(3));
 
 
