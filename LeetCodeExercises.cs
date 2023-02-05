@@ -1429,6 +1429,31 @@ namespace NewLearning
             const int MOD = 1_000_000_007;
             return ((int)BigInteger.ModPow(2, n, MOD) - 2 + MOD) % MOD;
         }
+
+        public IList<int> FindAnagrams(string s, string p)
+        {
+            IList<int> anagramIndisies = new List<int>();
+            char[] anagrammPatternChars= p.ToCharArray();
+            Array.Sort(anagrammPatternChars);
+            for (int i = 0; i <= s.Length - p.Length; i++)
+            {
+                string sPart = s.Substring(i, p.Length);
+                if (isAnagram(sPart, anagrammPatternChars))
+                    anagramIndisies.Add(i);
+            }
+            return anagramIndisies;
+
+            static bool isAnagram(string possibleAnagramm, char[] pattern)
+            {
+                char[] possibleAnagrammChars = possibleAnagramm.ToCharArray();
+                Array.Sort(possibleAnagrammChars);
+                if (possibleAnagrammChars.SequenceEqual(pattern))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }
 

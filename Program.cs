@@ -10,6 +10,6 @@ Algorithms algorithms = new Algorithms();
 LeetCodeExercises leetCode = new LeetCodeExercises();
 CodeWarsExercises codeWars = new CodeWarsExercises();
 
-Console.WriteLine(leetCode.MonkeyMove(3));
+Console.WriteLine(leetCode.FindAnagrams("cbaebabacd", "abc"));
 
 
