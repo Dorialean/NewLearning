@@ -6,10 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Reflection.Metadata;
 using System.Text;
 
-Algorithms algorithms = new Algorithms();
-LeetCodeExercises leetCode = new LeetCodeExercises();
-CodeWarsExercises codeWars = new CodeWarsExercises();
+Algorithms algorithms = new();
+LeetCodeExercises leetCode = new();
+CodeWarsExercises codeWars = new();
+CodeForces codeForces = new();
 
-Console.WriteLine(leetCode.FindAnagrams("cbaebabacd", "abc"));
+CodeForces.LeastCommonDivisor();
 
 

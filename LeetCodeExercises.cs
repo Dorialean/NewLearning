@@ -1432,6 +1432,8 @@ namespace NewLearning
 
         public IList<int> FindAnagrams(string s, string p)
         {
+            if (string.IsNullOrEmpty(s))
+                return new List<int>();
             IList<int> anagramIndisies = new List<int>();
             char[] anagrammPatternChars= p.ToCharArray();
             Array.Sort(anagrammPatternChars);
